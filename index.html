@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business and Technology Blog - Sarthak Pant</title>
+    <title>Business and Future Tech Blog - Sarthak Pant IIM L</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -110,6 +110,16 @@
             }
         }
     </script>
+    <script>
+        function toggleBlogContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+    </script>
 <body>
     <header>
         <h1>Business and Technology Blog</h1>
@@ -118,8 +128,9 @@
     
     <div class="container">
         <!-- Blog Post 1 -->
-        <div class="blog-post" id="ai-business">
-            <a href="#" onclick="toggleBlogContent('ai-business-content')"><h2>How AI is Changing Business</h2></a>
+        <div class="blog-post">
+            <a href="#" onclick="toggleBlogContent('ai-business">
+            <a href="#" onclick="toggleBlogContent('ai-business-content')-content')"><h2>How AI is Changing Business</h2></a>
             <p class="date">Published on: September 29, 2024</p>
             <div id="ai-business-content" style="display:none;">
                 <p>Artificial Intelligence (AI) is revolutionizing the business landscape across industries. From automating routine tasks to providing deeper insights for decision-making, AI has become an integral part of business strategies. Companies are using AI for predictive analytics, personalized marketing, and enhancing customer experiences. This article explores the various ways AI is transforming different sectors and what the future might hold.</p>
@@ -129,9 +140,13 @@
         
         <!-- Blog Post 2 -->
         <div class="blog-post" id="bpo-jobs">
-            <h2>Will AI Take Over BPO and Support Jobs?</h2>
-            <p class="date">Published on: October 5, 2024</p>
-            <p>The BPO industry is at a turning point with the rapid advancement of AI technologies. Chatbots and virtual assistants are increasingly being used to handle customer queries, posing a challenge to traditional BPO roles. This post analyzes whether AI will completely take over BPO and support jobs or whether a balance between human skills and automation will emerge. Experts suggest that while routine jobs may decline, new opportunities in managing AI systems will arise.</p>
+            <h2>Will AI Take Over BPO and Support Jobs?</h2></a>
+            <div id="ai-business">
+            <a href="#" onclick="toggleBlogContent('ai-business-content')-content" style="display:none;">
+                <p class="date">Published on: October 5, 2024</p>
+                <p>The BPO industry is at a turning point with the rapid advancement of AI technologies. Chatbots and virtual assistants are increasingly being used to handle customer queries, posing a challenge to traditional BPO roles. This post analyzes whether AI will completely take over BPO and support jobs or whether a balance between human skills and automation will emerge. Experts suggest that while routine jobs may decline, new opportunities in managing AI systems will arise.</p>
+                <p><strong>Source:</strong> [Provide the original link here]</p>
+            </div>
         </div>
         
         <!-- Blog Post 3 -->
@@ -191,7 +206,7 @@
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 Business and Technology Blog by Sarthak Pant. All rights reserved.</p>
+        <p>&copy; 2024 Business and Future Tech Blog by Sarthak Pant IIM L. All rights reserved.</p>
     </footer>
         
     </footer>
