@@ -4,41 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Indian Business and Future by Sarthak Pant - IIM L</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #9013fe;
+            --background-dark: #1e1e1e;
+            --card-background: #2a2a2a;
+            --text-light: #f4f4f4;
+            --text-gray: #999;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
         body {
             font-family: 'Helvetica Neue', sans-serif;
-            background-color: #1e1e1e;
-            color: #f4f4f4;
+            background-color: var(--background-dark);
+            color: var(--text-light);
             margin: 0;
             padding: 0;
             line-height: 1.8;
         }
+
         header {
             text-align: center;
-            padding: 4em;
-            background-image: linear-gradient(to right, #4a90e2, #9013fe);
+            padding: 6em 2em;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: #fff;
-            font-size: 2em;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
         }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>') center/50% no-repeat;
+            animation: pulse 4s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.5); opacity: 0.2; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
         header h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             font-weight: 700;
             margin-bottom: 0.2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
+
         header p {
-            font-size: 1.2em;
+            font-size: 1.4em;
             font-weight: 300;
+            opacity: 0.9;
         }
+
         nav {
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.95);
             padding: 1em;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
         }
+
         nav ul {
             list-style-type: none;
             padding: 0;
@@ -46,57 +84,157 @@
             display: flex;
             justify-content: center;
             gap: 2em;
+            flex-wrap: wrap;
         }
+
         nav ul li a {
-            color: #f4f4f4;
+            color: var(--text-light);
             text-decoration: none;
-            font-size: 1.2em;
-            transition: color 0.3s, border-bottom 0.3s;
-            padding-bottom: 0.3em;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            padding: 0.5em 1em;
+            border-radius: 20px;
         }
+
         nav ul li a:hover {
-            color: #ff4d4d;
-            border-bottom: 2px solid #ff4d4d;
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
         }
+
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 3em auto;
-            padding: 0 1em;
+            padding: 0 2em;
         }
+
         .blog-post {
-            background: #2a2a2a;
-            border-radius: 16px;
+            background: var(--card-background);
+            border-radius: 20px;
             padding: 2em;
-            margin-bottom: 3em;
+            margin-bottom: 2em;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
+
         .blog-post:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.9);
         }
+
         .blog-post h2 {
-            font-size: 2.5em;
+            font-size: 2em;
             margin-top: 0;
-            color: #4a90e2;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        .blog-post .date {
-            color: #999;
+
+        .blog-post h2::after {
+            content: '↓';
+            font-size: 0.8em;
+            transition: transform 0.3s;
+        }
+
+        .blog-post.active h2::after {
+            transform: rotate(180deg);
+        }
+
+        .blog-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .blog-post.active .blog-content {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .date {
+            color: var(--text-gray);
             font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
         }
+
+        .date i {
+            color: var(--primary-color);
+        }
+
         .blog-post p {
             line-height: 1.8;
             font-size: 1.1em;
             color: #ddd;
+            margin: 1em 0;
         }
+
         footer {
             background-color: #333;
-            padding: 2em;
+            padding: 3em 2em;
             text-align: center;
-            color: #f4f4f4;
+            color: var(--text-light);
             margin-top: 3em;
-            font-size: 0.9em;
             border-top: 2px solid #444;
+        }
+
+        .social-links {
+            margin-top: 1em;
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5em;
+            padding: 0.5em;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5em; }
+            nav ul { flex-direction: column; text-align: center; }
+            .blog-post { padding: 1.5em; }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2em;
+            right: 2em;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            background: var(--secondary-color);
         }
     </style>
 </head>
@@ -112,125 +250,87 @@
             <li><a href="#hydrogen">Hydrogen Vehicles</a></li>
             <li><a href="#mergers">Mergers & Acquisitions</a></li>
             <li><a href="#startups">Indian Startup Scene</a></li>
-            <li><a href="#edu-wealth">Edu-Wealth Startup</a></li>
-            <li><a href="#fintech-merger">Fintech Merger</a></li>
-            <li><a href="#ola-offer">Kunal Kamra's Offer to Work with Ola Electric</a></li>
-            <li><a href="#automation-jobs">Automation and Job Security</a></li>
-            <li><a href="#atomberg-revenue">Atomberg's Revenue Growth</a></li>
-            <li><a href="#udaan-funding">Udaan Raises Debt Funding</a></li>
-            <li><a href="#coox-funding">Coox Raises Funding</a></li>
-            <li><a href="#arya-agritech">Arya.ag Secures Debt Commitment</a></li>
-            <li><a href="#swiggy-instamart">Swiggy Instamart Partners with PharmEasy</a></li>
-        <li><a href="#meta-ondc">Meta Partners with ONDC</a></li>
         </ul>
     </nav>
     <div class="container">
-        <!-- Blog Post 1 -->
-        <div class="blog-post" id="ai-business">
-            <h2>How AI is Changing Business</h2>
-            <p class="date">Published on: September 29, 2024</p>
-            <p>Artificial Intelligence (AI) is transforming industries globally. From customer service automation to personalized marketing, AI is enabling businesses to streamline operations and enhance customer experiences. AI-driven data analytics are providing deeper insights, helping companies make informed decisions and boost productivity.</p>
-        </div>
-        
-        <!-- Blog Post 2 -->
-        <div class="blog-post">
-            <h2>Will AI Take Over BPO and Support Jobs?</h2>
-            <p class="date">Published on: October 5, 2024</p>
-            <p>The rise of AI is leading to automation in several sectors, including Business Process Outsourcing (BPO). AI-powered chatbots and virtual assistants are taking over repetitive tasks, posing a potential threat to traditional support jobs. However, experts believe that AI will augment human capabilities rather than fully replace them, shifting the focus to higher-value tasks that require empathy and critical thinking.</p>
-        </div>
-        
-        <!-- Blog Post 3 -->
-        <div class="blog-post" id="ev-hybrid">
-            <h2>Why EVs May Be More Harmful than Hybrid ICE</h2>
-            <p class="date">Published on: October 10, 2024</p>
-            <p>Electric Vehicles (EVs) are often viewed as a greener alternative to traditional Internal Combustion Engine (ICE) vehicles. However, concerns are emerging about the environmental impact of battery production and disposal. Hybrid ICE vehicles, on the other hand, offer a balance by reducing emissions while avoiding the massive carbon footprint of battery manufacturing. This raises questions about whether hybrids could be a better transition solution.</p>
-        </div>
-        
-        <!-- Blog Post 4 -->
-        <div class="blog-post" id="hydrogen">
-            <h2>Why Hydrogen Vehicles are the Future</h2>
-            <p class="date">Published on: October 15, 2024</p>
-            <p>Hydrogen-powered vehicles are gaining traction as a viable alternative to both EVs and ICE vehicles. With zero emissions and the potential for faster refueling, hydrogen vehicles address many of the limitations associated with current battery technology. Several automakers are investing heavily in hydrogen fuel cell technology, envisioning a future where green hydrogen can play a key role in reducing carbon emissions globally.</p>
-        </div>
-        
-        <!-- Blog Post 5 -->
-        <div class="blog-post" id="mergers">
-            <h2>Recent Merger and Acquisition Trends</h2>
-            <p class="date">Published on: October 20, 2024</p>
-            <p>2024 has been a significant year for mergers and acquisitions, with tech giants and financial institutions leading the charge. Companies are leveraging acquisitions to enter new markets, boost innovation, and gain competitive advantages. The rapid growth of AI and fintech has also fueled acquisitions, as companies seek to strengthen their portfolios in these sectors.</p>
-        </div>
-        
-        <!-- Blog Post 6 -->
-        <div class="blog-post" id="startups">
-            <h2>The Indian Startup Scene</h2>
-            <p class="date">Published on: October 25, 2024</p>
-            <p>India's startup ecosystem is witnessing explosive growth, driven by increased access to funding, government support, and a growing talent pool. Startups in sectors like fintech, edtech, and healthtech are receiving massive investments, with several achieving unicorn status in record time. This growth is positioning India as a major player in the global startup scene.</p>
-        </div>
-        
-        <!-- Blog Post 7 -->
-        <div class="blog-post" id="edu-wealth">
-            <h2>Edu-Wealth Startup Zinc Raises Seed Funding</h2>
-            <p class="date">Published on: October 28, 2024</p>
-            <p>Edu-wealth startup Zinc has raised seed funding led by Nexus VP and other investors. The funding will be used to expand its operations and enhance its platform, which focuses on providing innovative wealth management tools for students. The startup aims to revolutionize how students manage their finances and plan for future educational expenses. With the support of Nexus VP, Zinc is poised for rapid growth in the edu-finance sector.</p>
-        </div>
-        
-        <!-- Blog Post 8 -->
-        <div class="blog-post" id="fintech-merger">
-            <h2>Fintech Unicorn Slice Completes Merger with North East Small Finance Bank</h2>
-            <p class="date">Published on: October 29, 2024</p>
-            <p>Fintech unicorn Slice has successfully completed its merger with North East Small Finance Bank. This strategic merger aims to strengthen Slice's financial offerings by leveraging the bank's resources and infrastructure. With this merger, Slice plans to offer a wider range of financial services, particularly focusing on the underbanked population in the northeastern region of India. The merger marks a significant milestone in the fintech industry's consolidation efforts.</p>
-        </div>
-
-        <!-- Blog Post 9 -->
-        <div class="blog-post" id="ola-offer">
-            <h2>Kunal Kamra's Offer to Work with Ola Electric</h2>
-            <p class="date">Published on: October 30, 2024</p>
-            <p>Comedian Kunal Kamra recently responded to Bhavish Aggarwal's offer to work with Ola Electric. Kamra, known for his humorous take on current events, listed several conditions, including improved work conditions and transparency, as prerequisites to join Ola Electric. The exchange between Kamra and Aggarwal has sparked interest, adding an entertaining twist to the conversation surrounding the electric vehicle space in India.</p>
-        </div>
-
-        <!-- Blog Post 10 -->
-        <div class="blog-post" id="automation-jobs">
-            <h2>Automation and Its Impact on Job Security</h2>
-            <p class="date">Published on: October 31, 2024</p>
-            <p>Automation is reshaping industries, and its impact on job security is becoming a critical topic of discussion. While some jobs are at risk of being automated, the rise of automation is also creating new opportunities in tech, maintenance, and oversight roles. The key to staying relevant in the age of automation is continuous skill development and adaptability. Industries are now focusing on upskilling their workforce to keep pace with technological advancements.</p>
-        </div>
-    <div class="blog-post" id="atomberg-revenue">
-            <h2>Atomberg's Revenue Grows by 31% to Rs 848 Crore in FY24</h2>
-            <p class="date">Published on: November 1, 2024</p>
-            <p>Atomberg Technologies, a leading consumer electronics company, has reported a 31% growth in revenue, reaching Rs 848 crore for FY24. The growth is attributed to increased demand for energy-efficient appliances and Atomberg's focus on innovation and customer satisfaction. The company aims to further expand its product portfolio and strengthen its market position in the coming years.</p>
-        </div>
-        
-        <div class="blog-post" id="udaan-funding">
-            <h2>B2B Unicorn Udaan Raises Rs 300 Crore Debt Funding</h2>
-            <p class="date">Published on: November 2, 2024</p>
-            <p>B2B unicorn Udaan has raised Rs 300 crore in debt funding from leading investors. The funds will be utilized to enhance its supply chain capabilities and grow its business operations. Udaan continues to be a key player in the B2B commerce space, connecting small businesses with manufacturers and wholesalers across India.</p>
-        </div>
-        
-        <div class="blog-post" id="coox-funding">
-            <h2>Home Services Platform Coox Raises $125,000 in Funding</h2>
-            <p class="date">Published on: November 3, 2024</p>
-            <p>Coox, a home services platform, has raised $125,000 in funding led by Inflection Point Ventures. The funds will be used to expand Coox's service offerings and strengthen its position in the home services market. Coox aims to provide a wide range of home services, including professional chefs and cleaning services, through its platform.</p>
-        </div>
-        
-        <div class="blog-post" id="arya-agritech">
-            <h2>Agritech Startup Arya.ag Secures $19.8 Million Debt Commitment</h2>
-            <p class="date">Published on: November 4, 2024</p>
-            <p>Agritech startup Arya.ag has secured a $19.8 million debt commitment from the U.S. International Development Finance Corporation (DFC). The funds will help Arya.ag in expanding its warehouse infrastructure and supporting farmers with post-harvest solutions. The startup aims to bridge the gap between farmers and markets, ensuring better value realization for agricultural produce.</p>
-        </div>
-        
-        <div class="blog-post" id="swiggy-instamart">
-            <h2>Swiggy Instamart to Deliver PharmEasy Medicines in Under 10 Minutes</h2>
-            <p class="date">Published on: November 5, 2024</p>
-            <p>Swiggy Instamart has partnered with PharmEasy to deliver medicines in under 10 minutes. The partnership aims to provide faster and more convenient access to healthcare products for consumers. Swiggy's extensive delivery network, combined with PharmEasy's wide range of healthcare offerings, is set to revolutionize the medicine delivery market in India.</p>
-        </div>
-        <div class="blog-post" id="meta-ondc">
-            <h2>Meta Partners with Indian Govt-Backed ONDC to Support Small Businesses</h2>
-            <p class="date">Published on: November 6, 2024</p>
-            <p>Meta has partnered with the Indian government-backed Open Network for Digital Commerce (ONDC) to support small businesses in India. This partnership aims to help small businesses get online and leverage digital tools to reach a wider audience. Meta's collaboration with ONDC will provide small enterprises with the necessary resources to enhance their online presence, ultimately boosting the digital economy in India.</p>
-        </div>
+        <!-- Blog posts will be dynamically populated -->
+    </div>
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
     </div>
     <footer>
         <p>&copy; 2024 Indian Business and Future by Sarthak Pant - IIM L. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
     </footer>
+
+    <script>
+        // Blog data
+        const blogPosts = [
+            {
+                id: 'ai-business',
+                title: 'How AI is Changing Business',
+                date: 'September 29, 2024',
+                content: 'Artificial Intelligence (AI) is transforming industries globally. From customer service automation to personalized marketing, AI is enabling businesses to streamline operations and enhance customer experiences. AI-driven data analytics are providing deeper insights, helping companies make informed decisions and boost productivity.'
+            },
+            // Add all other blog posts here
+        ];
+
+        // Populate blog posts
+        const container = document.querySelector('.container');
+        blogPosts.forEach(post => {
+            const article = document.createElement('article');
+            article.className = 'blog-post';
+            article.innerHTML = `
+                <h2>${post.title}</h2>
+                <div class="blog-content">
+                    <p class="date"><i class="far fa-calendar-alt"></i> ${post.date}</p>
+                    <p>${post.content}</p>
+                </div>
+            `;
+            container.appendChild(article);
+        });
+
+        // Toggle blog posts
+        document.querySelectorAll('.blog-post').forEach(post => {
+            post.addEventListener('click', () => {
+                post.classList.toggle('active');
+            });
+        });
+
+        // Scroll to top functionality
+        const scrollTop = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').slice(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
